@@ -3,47 +3,47 @@
 @import "tailwindcss";
 
 @theme {
-    --font-poppins: "Poppins", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
 
-    --color-page: var(--page);
-    --color-header: var(--header);
-    --color-primary: var(--primary);
-    --color-divider-large: var(--divider-large);
-    --color-divider-small: var(--divider-small);
-    --color-text: var(--text);
-    --color-label: var(--label);
-    --color-input-border: var(--input-border);
-    --color-input-bg: var(--input-bg);
-    --color-input-error-border: var(--input-error-border);
-    --color-input-error-bg: var(--input-error-bg);
+  --color-page: var(--page);
+  --color-header: var(--header);
+  --color-primary: var(--primary);
+  --color-divider-large: var(--divider-large);
+  --color-divider-small: var(--divider-small);
+  --color-text: var(--text);
+  --color-label: var(--label);
+  --color-input-border: var(--input-border);
+  --color-input-bg: var(--input-bg);
+  --color-input-error-border: var(--input-error-border);
+  --color-input-error-bg: var(--input-error-bg);
 }
 
 /* DARK MODE PADRÃO */
 :root {
-    --page: #222222;
-    --header: #333333;
-    --primary: #226ed8;
+  --page: #222222;
+  --header: #333333;
+  --primary: #226ed8;
 
-    --divider-large: rgb(156 199 251 / 70%);
-    --divider-small: #3b5f91;
+  --divider-large: rgb(156 199 251 / 70%);
+  --divider-small: #3b5f91;
 
-    --text: #fafafa;
-    --label: rgb(250 250 250 / 50%);
+  --text: #fafafa;
+  --label: rgb(250 250 250 / 50%);
 
-    --input-border: #5c9dff;
-    --input-bg: #535353;
+  --input-border: #5c9dff;
+  --input-bg: #535353;
 
-    --input-error-border: #ffafaf;
-    --input-error-bg: #ffafaf;
+  --input-error-border: #ffafaf;
+  --input-error-bg: #ffafaf;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    font-family: var(--font-poppins);
-    background-color: var(--page);
-    color: var(--text);
+  margin: 0;
+  font-family: var(--font-poppins);
+  background-color: var(--page);
+  color: var(--text);
 }
