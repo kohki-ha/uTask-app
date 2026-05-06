@@ -37,6 +37,26 @@
     --input-error-bg: #ffafaf;
 }
 
+/* LIGHT MODE */
+
+.light {
+    --page: #fafafa;
+    --header: #226ed8;
+    --primary: #226ed8;
+
+    --divider-large: rgb(156 199 251 / 70%);
+    --divider-small: #3b5f91;
+
+    --text: #141414;
+    --label: rgb(20 20 20 / 50%);
+
+    --input-border: #002d6c;
+    --input-bg: #eef5ff;
+
+    --input-error-border: #df0000;
+    --input-error-bg: #ffafaf;
+}
+
 * {
     box-sizing: border-box;
 }
