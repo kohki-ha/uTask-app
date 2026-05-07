@@ -1,12 +1,22 @@
+import type { Theme } from "../hooks/useTheme";
 import { Header } from "../components/layout/Header";
 import { AuthForm } from "../components/forms/AuthForm";
 import { Link } from "react-router-dom";
 import loginIllustration from "../assets/login-illustration.svg";
 
-export function Login() {
+type LoginProps = {
+    theme: Theme;
+    onToggleTheme: () => void;
+};
+
+export function Login({ theme, onToggleTheme }: LoginProps) {
     return (
         <div className="bg-page text-text min-h-screen">
-            <Header variant="auth" />
+            <Header
+                variant="auth"
+                theme={theme}
+                onToggleTheme={onToggleTheme}
+            />
 
             <main className="flex min-h-[calc(100vh-52px)] flex-col lg:flex-row lg:items-center lg:justify-center">
                 <section className="flex flex-1 justify-center">
