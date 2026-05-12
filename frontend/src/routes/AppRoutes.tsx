@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import type { Theme } from "../hooks/useTheme";
 import { Login } from "../pages/Login";
+import { Register } from "../pages/Register";
 
 type AppRoutesProps = {
     theme: Theme;
@@ -17,6 +18,13 @@ export function AppRoutes({ theme, onToggleTheme }: AppRoutesProps) {
                     path="/login"
                     element={
                         <Login theme={theme} onToggleTheme={onToggleTheme} />
+                    }
+                />
+
+                <Route
+                    path="/register"
+                    element={
+                        <Register theme={theme} onToggleTheme={onToggleTheme} />
                     }
                 />
             </Routes>

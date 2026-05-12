@@ -12,6 +12,10 @@ export function AuthForm({ mode }: AuthFormProps) {
         <form className="flex w-full max-w-93.5 flex-col">
             {!isLogin && (
                 <>
+                    <h2 className="text-text mb-3 self-start text-xl font-semibold">
+                        Crie uma conta
+                    </h2>
+
                     <div className="mb-4">
                         <InputField
                             label="Nome de usuário"
