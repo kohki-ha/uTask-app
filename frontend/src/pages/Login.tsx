@@ -27,16 +27,16 @@ export function Login({ theme, onToggleTheme }: LoginProps) {
                     />
                 </section>
 
-                <div className="bg-divider-large mx-auto hidden h-[83vh] max-h-150 w-px lg:block" />
+                <div className="bg-divider-large absolute left-1/2 mx-auto hidden h-[83vh] max-h-150 w-px lg:block" />
 
                 <section className="m-6 flex flex-1 flex-col items-center">
-                    <h1 className="text-primary mb-12 text-center text-[42px] font-bold">
+                    <h1 className="text-primary mb-8 text-center text-[42px] font-bold">
                         uTask 3.0
                     </h1>
 
                     <AuthForm mode="login" />
 
-                    <div className="bg-divider-small mx-auto my-10 h-px w-[45%] max-w-42.5" />
+                    <div className="bg-divider-small mx-auto my-8 h-px w-[45%] max-w-42.5" />
 
                     <Link
                         to="/register"

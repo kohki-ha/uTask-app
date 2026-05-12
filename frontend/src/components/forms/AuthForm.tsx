@@ -12,7 +12,7 @@ export function AuthForm({ mode }: AuthFormProps) {
         <form className="flex w-full max-w-93.5 flex-col">
             {!isLogin && (
                 <>
-                    <h2 className="mb-3 text-xl font-semibold text-text self-start">
+                    <h2 className="text-text mb-3 self-start text-xl font-semibold">
                         Crie uma conta
                     </h2>
 

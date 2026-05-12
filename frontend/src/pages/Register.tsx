@@ -1,16 +1,16 @@
 import type { Theme } from "../hooks/useTheme";
 import { Header } from "../components/layout/Header";
 import { AuthForm } from "../components/forms/AuthForm";
-import registerIllustration from "../assets/register-illustration.svg"
+import registerIllustration from "../assets/register-illustration.svg";
 
 type LoginProps = {
     theme: Theme;
     onToggleTheme: () => void;
-}
+};
 
 export function Register({ theme, onToggleTheme }: LoginProps) {
     return (
-        <div className="min-h-screen bg-page text-text">
+        <div className="bg-page text-text min-h-screen">
             <Header
                 variant="auth"
                 theme={theme}
@@ -28,7 +28,7 @@ export function Register({ theme, onToggleTheme }: LoginProps) {
                     <AuthForm mode="register" />
                 </section>
 
-                <div className="bg-divider-large mx-auto hidden h-[83vh] max-h-150 w-px lg:block" />
+                <div className="bg-divider-large absolute left-1/2 mx-auto hidden h-[83vh] max-h-150 w-px lg:block" />
 
                 <section className="flex flex-1 justify-center">
                     <img
@@ -39,5 +39,5 @@ export function Register({ theme, onToggleTheme }: LoginProps) {
                 </section>
             </main>
         </div>
-    )
+    );
 }
