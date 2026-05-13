@@ -1,10 +1,12 @@
 import { useState } from "react";
+import type { UseFormRegisterReturn } from "react-hook-form";
 
 type InputFieldProps = {
     label: string;
     type?: "text" | "email" | "password";
     placeholder: string;
     error?: string;
+    registration?: UseFormRegisterReturn;
 };
 
 export function InputField({
@@ -12,6 +14,7 @@ export function InputField({
     type = "text",
     placeholder,
     error,
+    registration,
 }: InputFieldProps) {
     const [showPassword, setShowPassword] = useState(false);
 
@@ -19,13 +22,16 @@ export function InputField({
     const inputType = isPassword && showPassword ? "text" : type;
 
     return (
-        <div className="flex flex-col gap-1">
-            <label className="text-text text-base font-normal">{label}</label>
+        <div className="flex flex-col">
+            <label className="text-text mb-1 text-base font-normal">
+                {label}
+            </label>
 
             <div className="relative">
                 <input
                     type={inputType}
                     placeholder={placeholder}
+                    {...registration}
                     className={`bg-input-bg text-text placeholder:text-label h-10 w-full rounded-lg border px-4 text-sm outline-none ${
                         error
                             ? "border-input-error-border"
@@ -49,9 +55,9 @@ export function InputField({
                 )}
             </div>
 
-            {error && (
-                <span className="text-input-error-border text-sm">{error}</span>
-            )}
+            <span className="text-input-error-border min-h-4 text-xs">
+                {error}
+            </span>
         </div>
     );
 }
