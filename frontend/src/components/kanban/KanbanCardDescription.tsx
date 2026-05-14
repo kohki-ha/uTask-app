@@ -20,7 +20,7 @@ export function KanbanCardDescription({
                 className={`hover:text-primary flex cursor-pointer items-center gap-1 text-xs ${isDescriptionVisible ? "text-primary mb-2" : "text-text"}`}
             >
                 {isDescriptionVisible ? "Esconder descrição" : "Ler descrição"}
-                <span className="material-icons text-sm">
+                <span className="material-icons text-xm!">
                     {isDescriptionVisible ? "expand_less" : "expand_more"}
                 </span>
             </button>

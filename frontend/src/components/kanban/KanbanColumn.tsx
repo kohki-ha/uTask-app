@@ -6,6 +6,7 @@ type KanbanColumnProps = {
     status: CardStatus;
     cards: KanbanCardData[];
     showAddButton?: boolean;
+    onOpenCreateTaskModal?: () => void;
     onMoveNext: (cardId: number) => void;
     onMovePrevious: (cardId: number) => void;
     onRestart: (cardId: number) => void;
@@ -17,10 +18,11 @@ export function KanbanColumn({
     status,
     cards,
     showAddButton = false,
+    onOpenCreateTaskModal,
     onMoveNext,
     onMovePrevious,
     onRestart,
-    onDelete
+    onDelete,
 }: KanbanColumnProps) {
     const columnCards = cards
         .filter((card) => card.status === status)
@@ -38,6 +40,7 @@ export function KanbanColumn({
                 {showAddButton && (
                     <button
                         type="button"
+                        onClick={onOpenCreateTaskModal}
                         className="border-primary text-primary flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border-2"
                     >
                         <span className="material-icons text-base!">add</span>

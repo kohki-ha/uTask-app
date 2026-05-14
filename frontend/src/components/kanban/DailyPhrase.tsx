@@ -18,10 +18,10 @@ export function DailyPhrase() {
     }, []);
 
     return (
-        <section className="bg-column-bg text-text mx-auto mt-8 flex w-full max-w-155 gap-4 rounded-2xl p-5 shadow-lg">
+        <section className="bg-card-bg text-text mx-auto mt-8 flex w-full max-w-155 gap-4 rounded-2xl p-5 shadow-lg">
             <div className="bg-daily-bg2 flex h-11 w-11 shrink-0 items-center justify-center rounded-full">
                 <div className="bg-daily-bg1 flex h-8.5 w-8.5 items-center justify-center rounded-full">
-                    <span className="material-icons text-daily-icon text-2xl">
+                    <span className="material-icons text-daily-icon text-2xl!">
                         tips_and_updates
                     </span>
                 </div>
