@@ -5,4 +5,5 @@ export type KanbanCardData = {
     title: string;
     description: string;
     status: CardStatus;
+    lastEditedAt: string;
 };
