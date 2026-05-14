@@ -56,7 +56,7 @@ export function Header({
                         }`}
                     >
                         <span
-                            className={`material-icons text-[16px] leading-none ${
+                            className={`material-icons text-[16px]! leading-none ${
                                 isLight ? "text-[#FBB910]" : "text-[#222222]"
                             }`}
                         >

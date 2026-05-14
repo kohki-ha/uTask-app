@@ -25,7 +25,7 @@ export function CreateTaskModal({
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-8">
             <div className="bg-card-bg relative w-full max-w-118 rounded-[20px] p-8 pb-10 shadow-xl">
                 <div className="relative mb-9 flex items-center justify-center">
-                    <h2 className="text-primary border-b-4 border-primary  text-xl font-semibold">
+                    <h2 className="text-primary border-primary border-b-4 text-xl font-semibold">
                         Nova Task
                     </h2>
 
@@ -58,9 +58,7 @@ export function CreateTaskModal({
 
                     <textarea
                         value={description}
-                        onChange={(event) =>
-                            setDescription(event.target.value)
-                        }
+                        onChange={(event) => setDescription(event.target.value)}
                         placeholder="Digite a descrição da task"
                         className="bg-column-bg text-text placeholder:text-label mb-10 min-h-22 resize-none rounded-[10px] px-5 py-4 text-sm outline-none"
                     />

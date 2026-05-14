@@ -48,7 +48,7 @@ export function InputField({
                             showPassword ? "Esconder senha" : "Mostrar senha"
                         }
                     >
-                        <span className="material-icons text-3xl">
+                        <span className="material-icons text-2xl!">
                             {showPassword ? "visibility" : "visibility_off"}
                         </span>
                     </button>

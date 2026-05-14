@@ -22,7 +22,7 @@ export function KanbanColumn({
     onMoveNext,
     onMovePrevious,
     onRestart,
-    onDelete
+    onDelete,
 }: KanbanColumnProps) {
     const columnCards = cards
         .filter((card) => card.status === status)

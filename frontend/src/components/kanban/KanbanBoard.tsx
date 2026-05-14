@@ -93,15 +93,18 @@ export function KanbanBoard() {
         setCards((currentCards) => [newTask, ...currentCards]);
     }
 
-    function updateCardStatus(cardId: number, newStatus: KanbanCardData["status"]) {
+    function updateCardStatus(
+        cardId: number,
+        newStatus: KanbanCardData["status"],
+    ) {
         setCards((currentCards) =>
             currentCards.map((card) =>
                 card.id === cardId
                     ? {
-                        ...card,
-                        status: newStatus,
-                        lastEditedAt: new Date().toISOString(),
-                    }
+                          ...card,
+                          status: newStatus,
+                          lastEditedAt: new Date().toISOString(),
+                      }
                     : card,
             ),
         );
