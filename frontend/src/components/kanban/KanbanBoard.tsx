@@ -59,14 +59,15 @@ const cards: KanbanCardData[] = [
     {
         id: 10,
         title: "Fazer manicure",
-        description: "Agendar horário para sábado horário para sábado horário para sábado horário para sábado horário para sábado.",
+        description:
+            "Agendar horário para sábado horário para sábado horário para sábado horário para sábado horário para sábado.",
         status: "todo",
     },
 ];
 
 export function KanbanBoard() {
     return (
-        <section className="mx-auto mt-8 flex flex-1 w-full max-w-240 flex-col gap-10 lg:flex-row lg:justify-between items-stretch min-h-0">
+        <section className="mx-auto mt-8 flex min-h-0 w-full max-w-240 flex-1 flex-col items-stretch gap-10 lg:flex-row lg:justify-between">
             <KanbanColumn
                 title="A fazer"
                 status="todo"

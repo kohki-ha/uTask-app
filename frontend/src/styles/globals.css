@@ -33,9 +33,9 @@
 :root {
     --page: #222222;
     --header: #333333;
-    --header-item: #3867D6;
+    --header-item: #3867d6;
     --footer: #111111;
-    --footer-heart: #FFAFAF;
+    --footer-heart: #ffafaf;
     --primary: #226ed8;
 
     --divider-large: rgb(156 199 251 / 70%);
@@ -51,13 +51,13 @@
     --input-error-bg: #554848;
 
     --column-bg: #333333;
-    --card-bg: #3D3D3D;
+    --card-bg: #3d3d3d;
 
-    --daily-icon: #FFFFFF;
-    --daily-bg1: #3D3D3D;
+    --daily-icon: #ffffff;
+    --daily-bg1: #3d3d3d;
     --daily-bg2: #515151;
 
-    --popup: #FFAFAF;
+    --popup: #ffafaf;
     --popup-bg: #535353;
 
     --scroll: #515151;
@@ -67,9 +67,9 @@
 .light {
     --page: #fafafa;
     --header: #226ed8;
-    --header-item: #FAFAFA;
-    --footer: #114FA7;
-    --footer-heart: #FFAFAF;
+    --header-item: #fafafa;
+    --footer: #114fa7;
+    --footer-heart: #ffafaf;
     --primary: #226ed8;
 
     --divider-large: rgb(156 199 251 / 70%);
@@ -82,19 +82,19 @@
     --input-bg: #eef5ff;
 
     --input-error-border: #820000;
-    --input-error-bg: #FFE5E5;
+    --input-error-bg: #ffe5e5;
 
-    --column-bg: #EEEEEE;
-    --card-bg: #FFFFFF;
+    --column-bg: #eeeeee;
+    --card-bg: #ffffff;
 
-    --daily-icon: #FBB910;
-    --daily-bg1: #FFF5C0;
-    --daily-bg2: #FFFCEE;
+    --daily-icon: #fbb910;
+    --daily-bg1: #fff5c0;
+    --daily-bg2: #fffcee;
 
-    --popup: #DF0000;
-    --popup-bg: #FFFFFF;
+    --popup: #df0000;
+    --popup-bg: #ffffff;
 
-    --scroll: #C4C4C4;
+    --scroll: #c4c4c4;
 }
 
 * {

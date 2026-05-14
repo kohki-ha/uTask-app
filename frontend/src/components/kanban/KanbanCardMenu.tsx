@@ -6,7 +6,10 @@ export function KanbanCardMenu() {
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
-            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+            if (
+                menuRef.current &&
+                !menuRef.current.contains(event.target as Node)
+            ) {
                 setIsMenuOpen(false);
             }
         }
@@ -25,18 +28,20 @@ export function KanbanCardMenu() {
             <button
                 type="button"
                 onClick={() => setIsMenuOpen((current) => !current)}
-                className={`cursor-pointer hover:text-primary ${isMenuOpen ? "text-primary" : ""}`}
+                className={`hover:text-primary cursor-pointer ${isMenuOpen ? "text-primary" : ""}`}
             >
                 <span className="material-icons text-base!">more_vert</span>
             </button>
 
             {isMenuOpen && (
-                <div className="bg-popup-bg absolute right-0 top-[calc(100%+4px)] z-10 w-18  rounded-md shadow-[0_0_4px_rgba(0,0,0,0.25)]">
+                <div className="bg-popup-bg absolute top-[calc(100%+4px)] right-0 z-10 w-18 rounded-md shadow-[0_0_4px_rgba(0,0,0,0.25)]">
                     <button
                         type="button"
-                        className="cursor-pointer flex w-full flex-row justify-center items-center gap-1 rounded-md p-2 text-left text-xs text-popup h-8"
+                        className="text-popup flex h-8 w-full cursor-pointer flex-row items-center justify-center gap-1 rounded-md p-2 text-left text-xs"
                     >
-                        <span className="material-icons text-base!">delete_outline</span>
+                        <span className="material-icons text-base!">
+                            delete_outline
+                        </span>
                         Excluir
                     </button>
                 </div>

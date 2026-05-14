@@ -4,7 +4,9 @@ type KanbanCardDescriptionProps = {
     description: string;
 };
 
-export function KanbanCardDescription({ description }: KanbanCardDescriptionProps) {
+export function KanbanCardDescription({
+    description,
+}: KanbanCardDescriptionProps) {
     const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
 
     // Se o card não tem descrição, retornamos um fragmento vazio
@@ -15,7 +17,7 @@ export function KanbanCardDescription({ description }: KanbanCardDescriptionProp
             <button
                 type="button"
                 onClick={() => setIsDescriptionVisible((current) => !current)}
-                className={`flex cursor-pointer items-center gap-1 text-xs hover:text-primary ${isDescriptionVisible ? "text-primary mb-2" : "text-text"}`}
+                className={`hover:text-primary flex cursor-pointer items-center gap-1 text-xs ${isDescriptionVisible ? "text-primary mb-2" : "text-text"}`}
             >
                 {isDescriptionVisible ? "Esconder descrição" : "Ler descrição"}
                 <span className="material-icons text-sm">
@@ -23,9 +25,7 @@ export function KanbanCardDescription({ description }: KanbanCardDescriptionProp
                 </span>
             </button>
 
-            {isDescriptionVisible && (
-                <p className="text-xs">{description}</p>
-            )}
+            {isDescriptionVisible && <p className="text-xs">{description}</p>}
         </div>
     );
 }

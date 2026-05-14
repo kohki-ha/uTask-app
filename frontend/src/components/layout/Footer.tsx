@@ -1,8 +1,11 @@
 export function Footer() {
     return (
-        <footer className="bg-footer text-white flex flex-col items-center justify-between py-3 px-5 text-sm md:px-40 md:flex-row md:flex-wrap md:gap-x-6">
+        <footer className="bg-footer flex flex-col items-center justify-between px-5 py-3 text-sm text-white md:flex-row md:flex-wrap md:gap-x-6 md:px-40">
             <div>
-                © Processo de Trainee <a href="https://unect.com.br" className="font-semibold">Unect Jr.</a>
+                © Processo de Trainee{" "}
+                <a href="https://unect.com.br" className="font-semibold">
+                    Unect Jr.
+                </a>
             </div>
 
             <div className="flex items-center gap-1">

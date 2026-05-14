@@ -9,8 +9,8 @@ type KanbanCardProps = {
 
 export function KanbanCard({ card }: KanbanCardProps) {
     return (
-        <article className="bg-card-bg text-text rounded-[10px] p-3 flex flex-col shadow-lg">
-            <div className="flex items-start justify-between mb-3">
+        <article className="bg-card-bg text-text flex flex-col rounded-[10px] p-3 shadow-lg">
+            <div className="mb-3 flex items-start justify-between">
                 <h3
                     className={`text-sm font-semibold ${card.status === "done" ? "line-through" : ""}`}
                 >
@@ -20,7 +20,7 @@ export function KanbanCard({ card }: KanbanCardProps) {
                 <KanbanCardMenu />
             </div>
 
-            <div className="flex items-end justify-between mt-auto">
+            <div className="mt-auto flex items-end justify-between">
                 <KanbanCardDescription description={card.description} />
 
                 <KanbanCardActions status={card.status} />

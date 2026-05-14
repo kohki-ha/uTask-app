@@ -21,7 +21,7 @@ export function KanbanCardActions({ status }: KanbanCardActionsProps) {
             {status !== "done" && (
                 <button
                     type="button"
-                    className="bg-primary flex h-5 w-5 cursor-pointer items-center justify-center rounded-full text-card-bg"
+                    className="bg-primary text-card-bg flex h-5 w-5 cursor-pointer items-center justify-center rounded-full"
                 >
                     <span className="material-icons text-base!">
                         chevron_right
@@ -32,7 +32,7 @@ export function KanbanCardActions({ status }: KanbanCardActionsProps) {
             {status === "done" && (
                 <button
                     type="button"
-                    className="bg-primary flex h-5 w-5 cursor-pointer items-center justify-center rounded-full text-card-bg"
+                    className="bg-primary text-card-bg flex h-5 w-5 cursor-pointer items-center justify-center rounded-full"
                 >
                     <span className="material-icons text-base!">replay</span>
                 </button>

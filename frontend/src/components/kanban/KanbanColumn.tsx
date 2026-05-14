@@ -17,7 +17,7 @@ export function KanbanColumn({
     const columnCards = cards.filter((card) => card.status === status);
 
     return (
-        <section className="flex flex-1 flex-col w-full max-w-73 min-h-0">
+        <section className="flex min-h-0 w-full max-w-73 flex-1 flex-col">
             <div className="mb-3 flex min-h-8 shrink-0 items-center justify-between">
                 <h2 className="text-text text-xl font-normal">{title}</h2>
 
@@ -32,7 +32,7 @@ export function KanbanColumn({
             </div>
 
             {columnCards.length > 0 ? (
-                <div className="bg-column-bg flex flex-col gap-3 rounded-lg p-5 shadow-lg overflow-y-auto min-h-0">
+                <div className="bg-column-bg flex min-h-0 flex-col gap-3 overflow-y-auto rounded-lg p-5 shadow-lg">
                     {columnCards.map((card) => (
                         <KanbanCard key={card.id} card={card} />
                     ))}
