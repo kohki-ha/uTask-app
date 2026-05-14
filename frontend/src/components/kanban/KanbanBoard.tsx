@@ -1,7 +1,7 @@
 import { useState } from "react";
-
 import type { KanbanCardData } from "../../types/kanban";
 import { KanbanColumn } from "./KanbanColumn";
+import { CreateTaskModal } from "./CreateTaskModal";
 
 const initialCard: KanbanCardData[] = [
     {
@@ -79,6 +79,19 @@ const initialCard: KanbanCardData[] = [
 
 export function KanbanBoard() {
     const [cards, setCards] = useState<KanbanCardData[]>(initialCard);
+    const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false);
+
+    function createTask(title: string, description: string) {
+        const newTask: KanbanCardData = {
+            id: Date.now(),
+            title,
+            description,
+            status: "todo",
+            lastEditedAt: new Date().toISOString(),
+        };
+
+        setCards((currentCards) => [newTask, ...currentCards]);
+    }
 
     function updateCardStatus(cardId: number, newStatus: KanbanCardData["status"]) {
         setCards((currentCards) =>
@@ -133,37 +146,47 @@ export function KanbanBoard() {
     }
 
     return (
-        <section className="mx-auto mt-8 flex min-h-0 w-full max-w-240 flex-1 flex-col items-stretch gap-10 lg:flex-row lg:justify-between">
-            <KanbanColumn
-                title="A fazer"
-                status="todo"
-                cards={cards}
-                showAddButton
-                onMoveNext={moveCardToNextColumn}
-                onMovePrevious={moveCardToPreviousColumn}
-                onRestart={restartCard}
-                onDelete={deleteCard}
-            />
+        <>
+            <section className="mx-auto mt-8 flex min-h-0 w-full max-w-240 flex-1 flex-col items-stretch gap-10 lg:flex-row lg:justify-between">
+                <KanbanColumn
+                    title="A fazer"
+                    status="todo"
+                    cards={cards}
+                    showAddButton
+                    onOpenCreateTaskModal={() => setIsCreateTaskModalOpen(true)}
+                    onMoveNext={moveCardToNextColumn}
+                    onMovePrevious={moveCardToPreviousColumn}
+                    onRestart={restartCard}
+                    onDelete={deleteCard}
+                />
 
-            <KanbanColumn
-                title="Em andamento"
-                status="doing"
-                cards={cards}
-                onMoveNext={moveCardToNextColumn}
-                onMovePrevious={moveCardToPreviousColumn}
-                onRestart={restartCard}
-                onDelete={deleteCard}
-            />
+                <KanbanColumn
+                    title="Em andamento"
+                    status="doing"
+                    cards={cards}
+                    onMoveNext={moveCardToNextColumn}
+                    onMovePrevious={moveCardToPreviousColumn}
+                    onRestart={restartCard}
+                    onDelete={deleteCard}
+                />
 
-            <KanbanColumn
-                title="Feito"
-                status="done"
-                cards={cards}
-                onMoveNext={moveCardToNextColumn}
-                onMovePrevious={moveCardToPreviousColumn}
-                onRestart={restartCard}
-                onDelete={deleteCard}
-            />
-        </section>
+                <KanbanColumn
+                    title="Feito"
+                    status="done"
+                    cards={cards}
+                    onMoveNext={moveCardToNextColumn}
+                    onMovePrevious={moveCardToPreviousColumn}
+                    onRestart={restartCard}
+                    onDelete={deleteCard}
+                />
+            </section>
+
+            {isCreateTaskModalOpen && (
+                <CreateTaskModal
+                    onClose={() => setIsCreateTaskModalOpen(false)}
+                    onCreateTask={createTask}
+                />
+            )}
+        </>
     );
 }
