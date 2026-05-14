@@ -6,6 +6,10 @@ type KanbanColumnProps = {
     status: CardStatus;
     cards: KanbanCardData[];
     showAddButton?: boolean;
+    onMoveNext: (cardId: number) => void;
+    onMovePrevious: (cardId: number) => void;
+    onRestart: (cardId: number) => void;
+    onDelete: (cardId: number) => void;
 };
 
 export function KanbanColumn({
@@ -13,8 +17,18 @@ export function KanbanColumn({
     status,
     cards,
     showAddButton = false,
+    onMoveNext,
+    onMovePrevious,
+    onRestart,
+    onDelete
 }: KanbanColumnProps) {
-    const columnCards = cards.filter((card) => card.status === status);
+    const columnCards = cards
+        .filter((card) => card.status === status)
+        .sort(
+            (firstCard, secondCard) =>
+                new Date(secondCard.lastEditedAt).getTime() -
+                new Date(firstCard.lastEditedAt).getTime(),
+        );
 
     return (
         <section className="flex min-h-0 w-full max-w-73 flex-1 flex-col">
@@ -34,7 +48,14 @@ export function KanbanColumn({
             {columnCards.length > 0 ? (
                 <div className="bg-column-bg flex min-h-0 flex-col gap-3 overflow-y-auto rounded-lg p-5 shadow-lg">
                     {columnCards.map((card) => (
-                        <KanbanCard key={card.id} card={card} />
+                        <KanbanCard
+                            key={card.id}
+                            card={card}
+                            onMoveNext={onMoveNext}
+                            onMovePrevious={onMovePrevious}
+                            onRestart={onRestart}
+                            onDelete={onDelete}
+                        />
                     ))}
                 </div>
             ) : (
