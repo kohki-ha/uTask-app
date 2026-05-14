@@ -1,4 +1,6 @@
 import type { Theme } from "../../hooks/useTheme";
+import logoDark from "../../assets/logo-dark.svg";
+import logoLight from "../../assets/logo-light.svg";
 
 type HeaderVariant = "auth" | "app";
 
@@ -15,14 +17,25 @@ export function Header({
 }: HeaderProps) {
     const isAppHeader = variant === "app";
     const isLight = theme === "light";
+    const headerHeight = isAppHeader ? "h-20" : "h-13";
 
     return (
-        <header className="bg-header flex h-13 w-full items-center px-8 shadow-md">
+        <header
+            className={`bg-header flex w-full items-center px-8 shadow-md ${headerHeight}`}
+        >
             <div className="flex w-full items-center justify-between">
                 {isAppHeader ? (
-                    <h1 className="text-primary text-[30px] font-bold">
-                        uTask 3.0
-                    </h1>
+                    <>
+                        <img
+                            src={`${isLight ? logoLight : logoDark}`}
+                            alt="Logo Unect"
+                            className="h-10"
+                        />
+
+                        <h1 className="text-header-item text-[30px] font-bold">
+                            uTask 3.0
+                        </h1>
+                    </>
                 ) : (
                     <div />
                 )}

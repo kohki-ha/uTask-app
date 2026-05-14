@@ -32,11 +32,11 @@ export function InputField({
                     type={inputType}
                     placeholder={placeholder}
                     {...registration}
-                    className={`bg-input-bg text-text placeholder:text-label h-10 w-full rounded-lg border px-4 text-sm outline-none ${
+                    className={`text-text placeholder:text-label h-10 w-full rounded-lg border px-4 text-sm outline-none ${
                         error
                             ? "border-input-error-border"
                             : "border-input-border"
-                    }`}
+                    } ${error ? "bg-input-error-bg" : "bg-input-bg"}`}
                 />
 
                 {isPassword && (

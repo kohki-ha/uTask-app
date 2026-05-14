@@ -7,6 +7,9 @@
 
     --color-page: var(--page);
     --color-header: var(--header);
+    --color-header-item: var(--header-item);
+    --color-footer: var(--footer);
+    --color-footer-heart: var(--footer-heart);
     --color-primary: var(--primary);
     --color-divider-large: var(--divider-large);
     --color-divider-small: var(--divider-small);
@@ -16,12 +19,23 @@
     --color-input-bg: var(--input-bg);
     --color-input-error-border: var(--input-error-border);
     --color-input-error-bg: var(--input-error-bg);
+    --color-column-bg: var(--column-bg);
+    --color-card-bg: var(--card-bg);
+    --color-daily-icon: var(--daily-icon);
+    --color-daily-bg1: var(--daily-bg1);
+    --color-daily-bg2: var(--daily-bg2);
+    --color-popup: var(--popup);
+    --color-popup-bg: var(--popup-bg);
+    --color-scroll: var(--scroll);
 }
 
 /* DARK MODE PADRÃO */
 :root {
     --page: #222222;
     --header: #333333;
+    --header-item: #3867d6;
+    --footer: #111111;
+    --footer-heart: #ffafaf;
     --primary: #226ed8;
 
     --divider-large: rgb(156 199 251 / 70%);
@@ -34,13 +48,28 @@
     --input-bg: #535353;
 
     --input-error-border: #ffafaf;
-    --input-error-bg: #ffafaf;
+    --input-error-bg: #554848;
+
+    --column-bg: #333333;
+    --card-bg: #3d3d3d;
+
+    --daily-icon: #ffffff;
+    --daily-bg1: #3d3d3d;
+    --daily-bg2: #515151;
+
+    --popup: #ffafaf;
+    --popup-bg: #535353;
+
+    --scroll: #515151;
 }
 
 /* LIGHT MODE */
 .light {
     --page: #fafafa;
     --header: #226ed8;
+    --header-item: #fafafa;
+    --footer: #114fa7;
+    --footer-heart: #ffafaf;
     --primary: #226ed8;
 
     --divider-large: rgb(156 199 251 / 70%);
@@ -52,8 +81,20 @@
     --input-border: #002d6c;
     --input-bg: #eef5ff;
 
-    --input-error-border: #df0000;
-    --input-error-bg: #ffafaf;
+    --input-error-border: #820000;
+    --input-error-bg: #ffe5e5;
+
+    --column-bg: #eeeeee;
+    --card-bg: #ffffff;
+
+    --daily-icon: #fbb910;
+    --daily-bg1: #fff5c0;
+    --daily-bg2: #fffcee;
+
+    --popup: #df0000;
+    --popup-bg: #ffffff;
+
+    --scroll: #c4c4c4;
 }
 
 * {
@@ -65,4 +106,24 @@ body {
     font-family: var(--font-poppins);
     background-color: var(--page);
     color: var(--text);
+}
+
+/* Estilização da barra de rolagem */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--scroll);
+    border-radius: 10px;
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scroll) transparent;
 }
