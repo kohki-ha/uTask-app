@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import type { Theme } from "../hooks/useTheme";
 import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
+import { Kanban } from "../pages/Kanban";
 
 type AppRoutesProps = {
     theme: Theme;
@@ -25,6 +26,13 @@ export function AppRoutes({ theme, onToggleTheme }: AppRoutesProps) {
                     path="/register"
                     element={
                         <Register theme={theme} onToggleTheme={onToggleTheme} />
+                    }
+                />
+
+                <Route
+                    path="/kanban"
+                    element={
+                        <Kanban theme={theme} onToggleTheme={onToggleTheme} />
                     }
                 />
             </Routes>
