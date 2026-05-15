@@ -1,24 +1,16 @@
-import Fastify from "fastify";
-import cors from "@fastify/cors";
+import { AppDataSource } from "./config/data-source";
+import { env } from "./config/env";
+import { buildApp } from "./app";
 
-const app = Fastify({
-  logger: true,
-});
+async function startServer() {
+  await AppDataSource.initialize();
 
-await app.register(cors, {
-  origin: true,
-});
+  const app = buildApp();
 
-app.get("/health", async () => {
-  return {
-    status: "ok",
-    service: "utask-backend",
-  };
-});
+  await app.listen({
+    port: env.port,
+    host: "0.0.0.0",
+  });
+}
 
-const port = Number(process.env.PORT) || 3000;
-
-app.listen({ port, host: "0.0.0.0" }).catch((error) => {
-  app.log.error(error);
-  process.exit(1);
-});
+startServer();
