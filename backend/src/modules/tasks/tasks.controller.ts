@@ -1,10 +1,5 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
-import {
-    createTask,
-    deleteTask,
-    listTasks,
-    updateTask,
-} from "./tasks.service";
+import { createTask, deleteTask, listTasks, updateTask } from "./tasks.service";
 import type { TaskStatus } from "../../entities/Task";
 
 type CreateTaskBody = {

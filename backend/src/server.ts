@@ -3,14 +3,14 @@ import { env } from "./config/env";
 import { buildApp } from "./app";
 
 async function startServer() {
-  await AppDataSource.initialize();
+    await AppDataSource.initialize();
 
-  const app = buildApp();
+    const app = buildApp();
 
-  await app.listen({
-    port: env.port,
-    host: "0.0.0.0",
-  });
+    await app.listen({
+        port: env.port,
+        host: "0.0.0.0",
+    });
 }
 
 startServer();
