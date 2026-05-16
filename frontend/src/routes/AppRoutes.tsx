@@ -3,6 +3,7 @@ import type { Theme } from "../hooks/useTheme";
 import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
 import { Kanban } from "../pages/Kanban";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 type AppRoutesProps = {
     theme: Theme;
@@ -32,7 +33,9 @@ export function AppRoutes({ theme, onToggleTheme }: AppRoutesProps) {
                 <Route
                     path="/kanban"
                     element={
-                        <Kanban theme={theme} onToggleTheme={onToggleTheme} />
+                        <ProtectedRoute>
+                            <Kanban theme={theme} onToggleTheme={onToggleTheme} />
+                        </ProtectedRoute>
                     }
                 />
             </Routes>
