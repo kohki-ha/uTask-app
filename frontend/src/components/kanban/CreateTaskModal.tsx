@@ -2,7 +2,7 @@ import { useState } from "react";
 
 type CreateTaskModalProps = {
     onClose: () => void;
-    onCreateTask: (title: string, description: string) => void;
+    onCreateTask: (title: string, description: string) => Promise<void>;
 };
 
 export function CreateTaskModal({
@@ -11,14 +11,23 @@ export function CreateTaskModal({
 }: CreateTaskModalProps) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    async function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
         event.preventDefault();
 
         if (!title.trim()) return;
 
-        onCreateTask(title, description);
-        onClose();
+        try {
+            setIsSubmitting(true);
+
+            await onCreateTask(title.trim(), description.trim());
+
+            onClose();
+        } catch {
+            // O componente pai já exibe o erro; aqui só mantemos o modal aberto.
+            setIsSubmitting(false);
+        }
     }
 
     return (
@@ -65,9 +74,10 @@ export function CreateTaskModal({
 
                     <button
                         type="submit"
-                        className="bg-primary h-13 cursor-pointer rounded-[20px] text-lg text-white transition hover:brightness-110"
+                        disabled={isSubmitting}
+                        className="bg-primary h-13 cursor-pointer rounded-[20px] text-lg text-white transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
                     >
-                        Criar task
+                        {isSubmitting ? "Criando..." : "Criar task"}
                     </button>
                 </form>
             </div>

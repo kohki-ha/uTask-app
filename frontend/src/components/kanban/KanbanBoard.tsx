@@ -1,113 +1,84 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 import type { KanbanCardData } from "../../types/kanban";
 import { KanbanColumn } from "./KanbanColumn";
 import { CreateTaskModal } from "./CreateTaskModal";
-
-const initialCard: KanbanCardData[] = [
-    {
-        id: 1,
-        title: "Pagar conta de luz",
-        description: "Pagar a conta antes do vencimento.",
-        status: "todo",
-        lastEditedAt: "2026-05-14T10:00:00.000Z",
-    },
-    {
-        id: 2,
-        title: "Fazer compras no mercado grande",
-        description: "Comprar batata, cenoura, feijão, alho, arroz e pipoca.",
-        status: "todo",
-        lastEditedAt: "2026-05-14T10:00:00.000Z",
-    },
-    {
-        id: 3,
-        title: "Fazer manicure",
-        description: "Agendar horário para sábado.",
-        status: "todo",
-        lastEditedAt: "2026-05-14T10:00:00.000Z",
-    },
-    {
-        id: 4,
-        title: "Fazer manicure",
-        description: "Card em andamento.",
-        status: "done",
-        lastEditedAt: "2026-05-14T10:00:00.000Z",
-    },
-    {
-        id: 5,
-        title: "Fazer manicure",
-        description: "Card finalizado.",
-        status: "done",
-        lastEditedAt: "2026-05-14T10:00:00.000Z",
-    },
-    {
-        id: 6,
-        title: "Fazer manicure",
-        description: "Agendar horário para sábado.",
-        status: "todo",
-        lastEditedAt: "2026-05-14T10:00:00.000Z",
-    },
-    {
-        id: 7,
-        title: "Fazer manicure",
-        description: "Agendar horário para sábado.",
-        status: "todo",
-        lastEditedAt: "2026-05-14T10:00:00.000Z",
-    },
-    {
-        id: 8,
-        title: "Fazer manicure",
-        description: "Agendar horário para sábado.",
-        status: "todo",
-        lastEditedAt: "2026-05-14T10:00:00.000Z",
-    },
-    {
-        id: 9,
-        title: "Fazer manicure",
-        description: "Agendar horário para sábado.",
-        status: "todo",
-        lastEditedAt: "2026-05-14T10:00:00.000Z",
-    },
-    {
-        id: 10,
-        title: "Fazer manicure",
-        description:
-            "Agendar horário para sábado horário para sábado horário para sábado horário para sábado horário para sábado.",
-        status: "todo",
-        lastEditedAt: "2026-05-14T10:00:00.000Z",
-    },
-];
+import {
+    createTaskRequest,
+    deleteTaskRequest,
+    listTasksRequest,
+    updateTaskRequest,
+} from "../../services/tasksService";
 
 export function KanbanBoard() {
-    const [cards, setCards] = useState<KanbanCardData[]>(initialCard);
+    const [cards, setCards] = useState<KanbanCardData[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false);
 
-    function createTask(title: string, description: string) {
-        const newTask: KanbanCardData = {
-            id: Date.now(),
-            title,
-            description,
-            status: "todo",
-            lastEditedAt: new Date().toISOString(),
-        };
+    useEffect(() => {
+        async function loadTasks() {
+            try {
+                const tasks = await listTasksRequest();
+                setCards(tasks);
+            } catch (error) {
+                if (error instanceof Error) {
+                    toast.error(error.message);
+                    return;
+                }
 
-        setCards((currentCards) => [newTask, ...currentCards]);
+                toast.error("Erro ao carregar tasks.");
+            } finally {
+                setIsLoading(false);
+            }
+        }
+
+        loadTasks();
+    }, []);
+
+    async function createTask(title: string, description: string) {
+        try {
+            const task = await createTaskRequest({
+                title,
+                description,
+            });
+
+            setCards((currentCards) => [task, ...currentCards]);
+
+            toast.success("Task criada com sucesso!");
+        } catch (error) {
+            if (error instanceof Error) {
+                toast.error(error.message);
+                throw error;
+            }
+
+            const fallbackError = new Error("Erro ao criar task.");
+            toast.error(fallbackError.message);
+            throw fallbackError;
+        }
     }
 
-    function updateCardStatus(
+    async function updateCardStatus(
         cardId: number,
         newStatus: KanbanCardData["status"],
     ) {
-        setCards((currentCards) =>
-            currentCards.map((card) =>
-                card.id === cardId
-                    ? {
-                          ...card,
-                          status: newStatus,
-                          lastEditedAt: new Date().toISOString(),
-                      }
-                    : card,
-            ),
-        );
+        try {
+            const updatedTask = await updateTaskRequest(cardId, {
+                status: newStatus,
+            });
+
+            setCards((currentCards) =>
+                currentCards.map((card) =>
+                    card.id === cardId ? updatedTask : card,
+                ),
+            );
+        } catch (error) {
+            if (error instanceof Error) {
+                toast.error(error.message);
+                return;
+            }
+
+            toast.error("Erro ao atualizar task.");
+        }
     }
 
     function moveCardToNextColumn(cardId: number) {
@@ -142,9 +113,30 @@ export function KanbanBoard() {
         updateCardStatus(cardId, "todo");
     }
 
-    function deleteCard(cardId: number) {
-        setCards((currentCards) =>
-            currentCards.filter((card) => card.id !== cardId),
+    async function deleteCard(cardId: number) {
+        try {
+            await deleteTaskRequest(cardId);
+
+            setCards((currentCards) =>
+                currentCards.filter((card) => card.id !== cardId),
+            );
+
+            toast.success("Task excluída com sucesso!");
+        } catch (error) {
+            if (error instanceof Error) {
+                toast.error(error.message);
+                return;
+            }
+
+            toast.error("Erro ao excluir task.");
+        }
+    }
+
+    if (isLoading) {
+        return (
+            <div className="text-text flex flex-1 items-center justify-center">
+                Carregando tasks...
+            </div>
         );
     }
 
