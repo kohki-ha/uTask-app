@@ -10,12 +10,18 @@ import {
     type RegisterFormData,
 } from "../../schemas/authSchemas";
 
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import { loginRequest, registerRequest } from "../../services/authService";
+import { saveAuthToken } from "../../services/authStorage";
+
 type AuthFormProps = {
     mode: "login" | "register";
 };
 
 export function AuthForm({ mode }: AuthFormProps) {
     const isLogin = mode === "login";
+    const navigate = useNavigate();
 
     const {
         register,
@@ -25,8 +31,29 @@ export function AuthForm({ mode }: AuthFormProps) {
         resolver: zodResolver(isLogin ? loginSchema : registerSchema),
     });
 
-    function onSubmit(data: LoginFormData | RegisterFormData) {
-        console.log(data);
+    async function onSubmit(data: LoginFormData | RegisterFormData) {
+        try {
+            const result = isLogin
+                ? await loginRequest(data as LoginFormData)
+                : await registerRequest(data as RegisterFormData);
+
+            saveAuthToken(result.token);
+
+            toast.success(
+                isLogin
+                    ? "Login realizado com sucesso!"
+                    : "Cadastro realizado com sucesso!",
+            );
+
+            navigate("/kanban");
+        } catch (error) {
+            if (error instanceof Error) {
+                toast.error(error.message);
+                return;
+            }
+
+            toast.error("Erro inesperado.");
+        }
     }
 
     return (

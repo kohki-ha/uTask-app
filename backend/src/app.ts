@@ -10,6 +10,8 @@ export function buildApp() {
 
     app.register(cors, {
         origin: "http://localhost:5173",
+        methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+        allowedHeaders: ["Content-Type", "Authorization"],
     });
 
     app.get("/health", async () => {
