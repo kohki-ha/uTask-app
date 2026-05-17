@@ -31,8 +31,8 @@ export function CreateTaskModal({
     }
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-8">
-            <div className="bg-card-bg relative w-full max-w-118 rounded-[20px] p-8 pb-10 shadow-xl">
+        <div className="bg-modal-overlay fixed inset-0 z-50 flex items-center justify-center px-8">
+            <div className="bg-create-task-modal-bg relative w-full max-w-118 rounded-[20px] p-8 pb-10 shadow-xl">
                 <div className="relative mb-9 flex items-center justify-center">
                     <h2 className="text-primary border-primary border-b-4 text-xl font-semibold">
                         Nova Task
@@ -58,7 +58,7 @@ export function CreateTaskModal({
                         value={title}
                         onChange={(event) => setTitle(event.target.value)}
                         placeholder="Digite o título da task"
-                        className="bg-column-bg text-text placeholder:text-label mb-5 h-10 rounded-[10px] px-5 text-sm outline-none"
+                        className="bg-create-task-field-bg text-text placeholder:text-label mb-5 h-10 rounded-[10px] px-5 text-sm outline-none"
                     />
 
                     <label className="text-text mb-2 text-xs font-semibold">
@@ -69,7 +69,7 @@ export function CreateTaskModal({
                         value={description}
                         onChange={(event) => setDescription(event.target.value)}
                         placeholder="Digite a descrição da task"
-                        className="bg-column-bg text-text placeholder:text-label mb-10 min-h-22 resize-none rounded-[10px] px-5 py-4 text-sm outline-none"
+                        className="bg-create-task-field-bg text-text placeholder:text-label mb-10 min-h-22 resize-none rounded-[10px] px-5 py-4 text-sm outline-none"
                     />
 
                     <button

@@ -6,95 +6,124 @@
     --font-poppins: "Poppins", sans-serif;
 
     --color-page: var(--page);
+    --color-primary: var(--primary);
+    --color-text: var(--text);
+    --color-label: var(--label);
+    --color-scroll: var(--scroll);
+
     --color-header: var(--header);
     --color-header-item: var(--header-item);
     --color-footer: var(--footer);
     --color-footer-heart: var(--footer-heart);
-    --color-primary: var(--primary);
+
     --color-divider-large: var(--divider-large);
     --color-divider-small: var(--divider-small);
-    --color-text: var(--text);
-    --color-label: var(--label);
     --color-input-border: var(--input-border);
     --color-input-bg: var(--input-bg);
     --color-input-error-border: var(--input-error-border);
     --color-input-error-bg: var(--input-error-bg);
+
     --color-column-bg: var(--column-bg);
     --color-card-bg: var(--card-bg);
+    --color-kanban-card-action-icon: var(--kanban-card-action-icon);
+    --color-kanban-empty-state: var(--kanban-empty-state);
+    --color-kanban-pagination-dot: var(--kanban-pagination-dot);
+
     --color-daily-icon: var(--daily-icon);
     --color-daily-bg1: var(--daily-bg1);
     --color-daily-bg2: var(--daily-bg2);
+    --color-daily-button: var(--daily-button);
+    --color-daily-button-text: var(--daily-button-text);
+    --color-daily-card-bg: var(--daily-card-bg);
+    --color-daily-modal-bg: var(--daily-modal-bg);
+
+    --color-create-task-modal-bg: var(--create-task-modal-bg);
+    --color-create-task-field-bg: var(--create-task-field-bg);
     --color-popup: var(--popup);
     --color-popup-bg: var(--popup-bg);
-    --color-scroll: var(--scroll);
+    --color-modal-overlay: var(--modal-overlay);
 }
 
 /* DARK MODE PADRÃO */
 :root {
     --page: #222222;
+    --primary: #226ed8;
+    --text: #fafafa;
+    --label: rgb(250 250 250 / 50%);
+    --scroll: #515151;
+
     --header: #333333;
     --header-item: #3867d6;
     --footer: #111111;
     --footer-heart: #ffafaf;
-    --primary: #226ed8;
 
     --divider-large: rgb(156 199 251 / 70%);
     --divider-small: #3b5f91;
-
-    --text: #fafafa;
-    --label: rgb(250 250 250 / 50%);
-
     --input-border: #5c9dff;
     --input-bg: #535353;
-
     --input-error-border: #ffafaf;
     --input-error-bg: #554848;
 
     --column-bg: #333333;
     --card-bg: #3d3d3d;
+    --kanban-card-action-icon: #3d3d3d;
+    --kanban-empty-state: #515151;
+    --kanban-pagination-dot: #515151;
 
     --daily-icon: #ffffff;
     --daily-bg1: #3d3d3d;
     --daily-bg2: #515151;
+    --daily-button: #3d3d3d;
+    --daily-button-text: #ffffff;
+    --daily-card-bg: #3d3d3d;
+    --daily-modal-bg: #3d3d3d;
 
+    --create-task-modal-bg: #3d3d3d;
+    --create-task-field-bg: #333333;
     --popup: #ffafaf;
     --popup-bg: #535353;
-
-    --scroll: #515151;
+    --modal-overlay: rgb(0 0 0 / 40%);
 }
 
 /* LIGHT MODE */
 .light {
     --page: #fafafa;
+    --primary: #226ed8;
+    --text: #141414;
+    --label: rgb(20 20 20 / 50%);
+    --scroll: #c4c4c4;
+
     --header: #226ed8;
     --header-item: #fafafa;
     --footer: #114fa7;
     --footer-heart: #ffafaf;
-    --primary: #226ed8;
 
     --divider-large: rgb(156 199 251 / 70%);
     --divider-small: #3b5f91;
-
-    --text: #141414;
-    --label: rgb(20 20 20 / 50%);
-
     --input-border: #002d6c;
     --input-bg: #eef5ff;
-
     --input-error-border: #820000;
     --input-error-bg: #ffe5e5;
 
     --column-bg: #eeeeee;
     --card-bg: #ffffff;
+    --kanban-card-action-icon: #ffffff;
+    --kanban-empty-state: #c4c4c4;
+    --kanban-pagination-dot: #c4c4c4;
 
     --daily-icon: #fbb910;
     --daily-bg1: #fff5c0;
     --daily-bg2: #fffcee;
+    --daily-button: #ffd569;
+    --daily-button-text: #ffffff;
+    --daily-card-bg: #ffffff;
+    --daily-modal-bg: #ffffff;
 
+    --create-task-modal-bg: #ffffff;
+    --create-task-field-bg: #eeeeee;
     --popup: #df0000;
     --popup-bg: #ffffff;
-
-    --scroll: #c4c4c4;
+    --modal-overlay: rgb(0 0 0 / 40%);
 }
 
 * {
