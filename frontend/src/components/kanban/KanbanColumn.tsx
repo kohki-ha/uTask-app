@@ -7,7 +7,15 @@ type KanbanColumnProps = {
     cards: KanbanCardData[];
     showAddButton?: boolean;
     className?: string;
+    isDragEnabled?: boolean;
+    draggedCardId?: number | null;
+    isDragOver?: boolean;
     onOpenCreateTaskModal?: () => void;
+    onCardDragStart?: (cardId: number) => void;
+    onCardDragEnd?: () => void;
+    onDragOverColumn?: (status: CardStatus) => void;
+    onDragLeaveColumn?: (status: CardStatus) => void;
+    onDropCard?: (status: CardStatus) => void;
     onMoveNext: (cardId: number) => void;
     onMovePrevious: (cardId: number) => void;
     onRestart: (cardId: number) => void;
@@ -20,7 +28,15 @@ export function KanbanColumn({
     cards,
     showAddButton = false,
     className = "",
+    isDragEnabled = false,
+    draggedCardId = null,
+    isDragOver = false,
     onOpenCreateTaskModal,
+    onCardDragStart,
+    onCardDragEnd,
+    onDragOverColumn,
+    onDragLeaveColumn,
+    onDropCard,
     onMoveNext,
     onMovePrevious,
     onRestart,
@@ -34,9 +50,39 @@ export function KanbanColumn({
                 new Date(firstCard.lastEditedAt).getTime(),
         );
 
+    function handleDragOver(event: React.DragEvent<HTMLElement>) {
+        if (!isDragEnabled) return;
+
+        event.preventDefault();
+        event.dataTransfer.dropEffect = "move";
+        onDragOverColumn?.(status);
+    }
+
+    function handleDragLeave(event: React.DragEvent<HTMLElement>) {
+        if (!isDragEnabled) return;
+
+        const nextTarget = event.relatedTarget as Node | null;
+
+        if (nextTarget && event.currentTarget.contains(nextTarget)) return;
+
+        onDragLeaveColumn?.(status);
+    }
+
+    function handleDrop(event: React.DragEvent<HTMLElement>) {
+        if (!isDragEnabled) return;
+
+        event.preventDefault();
+        onDropCard?.(status);
+    }
+
     return (
         <section
-            className={`flex min-h-0 w-full max-w-73 flex-1 flex-col ${className}`}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+            className={`flex min-h-0 w-full max-w-73 flex-1 flex-col transition ${
+                isDragOver ? "ring-primary rounded-lg ring-2" : ""
+            } ${className}`}
         >
             <div className="mb-3 flex min-h-8 shrink-0 items-center justify-between">
                 <h2 className="text-text text-xl font-normal">{title}</h2>
@@ -58,6 +104,10 @@ export function KanbanColumn({
                         <KanbanCard
                             key={card.id}
                             card={card}
+                            isDragEnabled={isDragEnabled}
+                            isDragging={draggedCardId === card.id}
+                            onDragStart={onCardDragStart}
+                            onDragEnd={onCardDragEnd}
                             onMoveNext={onMoveNext}
                             onMovePrevious={onMovePrevious}
                             onRestart={onRestart}

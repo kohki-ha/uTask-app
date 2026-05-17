@@ -5,6 +5,10 @@ import { KanbanCardActions } from "./KanbanCardActions";
 
 type KanbanCardProps = {
     card: KanbanCardData;
+    isDragEnabled?: boolean;
+    isDragging?: boolean;
+    onDragStart?: (cardId: number) => void;
+    onDragEnd?: () => void;
     onMoveNext: (cardId: number) => void;
     onMovePrevious: (cardId: number) => void;
     onRestart: (cardId: number) => void;
@@ -13,13 +17,31 @@ type KanbanCardProps = {
 
 export function KanbanCard({
     card,
+    isDragEnabled = false,
+    isDragging = false,
+    onDragStart,
+    onDragEnd,
     onMoveNext,
     onMovePrevious,
     onRestart,
     onDelete,
 }: KanbanCardProps) {
+    function handleDragStart(event: React.DragEvent<HTMLElement>) {
+        event.dataTransfer.effectAllowed = "move";
+        event.dataTransfer.setData("text/plain", String(card.id));
+        onDragStart?.(card.id);
+    }
+
     return (
-        <article className="bg-card-bg text-text flex flex-col rounded-[10px] p-3 shadow-lg">
+        <article
+            draggable={isDragEnabled}
+            onDragStart={isDragEnabled ? handleDragStart : undefined}
+            onDragEnd={isDragEnabled ? onDragEnd : undefined}
+            aria-grabbed={isDragging || undefined}
+            className={`bg-card-bg text-text flex flex-col rounded-[10px] p-3 shadow-lg transition ${
+                isDragEnabled ? "lg:cursor-grab" : ""
+            } ${isDragging ? "opacity-60" : ""}`}
+        >
             <div className="mb-3 flex items-start justify-between">
                 <h3
                     className={`text-sm font-semibold ${card.status === "done" ? "line-through" : ""}`}
