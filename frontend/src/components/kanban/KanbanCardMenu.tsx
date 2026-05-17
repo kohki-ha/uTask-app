@@ -47,7 +47,7 @@ export function KanbanCardMenu({ onDelete }: KanbanCardMenuProps) {
                     <button
                         type="button"
                         onClick={handleDelete}
-                        className="text-popup flex h-8 w-full cursor-pointer flex-row items-center justify-center gap-1 rounded-md p-2 text-left text-xs"
+                        className="text-popup flex h-8 w-full cursor-pointer flex-row items-center justify-center gap-1 rounded-md p-2 text-left text-xs transition hover:brightness-110"
                     >
                         <span className="material-icons text-base!">
                             delete_outline

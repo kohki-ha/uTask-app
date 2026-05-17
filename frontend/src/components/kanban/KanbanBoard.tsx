@@ -310,7 +310,7 @@ export function KanbanBoard() {
                         type="button"
                         onClick={showPreviousColumn}
                         aria-label="Ver coluna anterior"
-                        className="text-primary absolute top-1/2 left-3 z-10 flex h-8 w-8 -translate-y-1/2 cursor-pointer items-center justify-center"
+                        className="text-primary absolute top-1/2 left-3 z-10 flex h-8 w-8 -translate-y-1/2 cursor-pointer items-center justify-center transition hover:brightness-110"
                     >
                         <span className="material-icons text-3xl!">
                             chevron_left
@@ -323,7 +323,7 @@ export function KanbanBoard() {
                         type="button"
                         onClick={showNextColumn}
                         aria-label="Ver próxima coluna"
-                        className="text-primary absolute top-1/2 right-3 z-10 flex h-8 w-8 -translate-y-1/2 cursor-pointer items-center justify-center"
+                        className="text-primary absolute top-1/2 right-3 z-10 flex h-8 w-8 -translate-y-1/2 cursor-pointer items-center justify-center transition hover:brightness-110"
                     >
                         <span className="material-icons text-3xl!">
                             chevron_right
@@ -341,7 +341,7 @@ export function KanbanBoard() {
                             aria-current={
                                 activeColumnIndex === index ? "page" : undefined
                             }
-                            className={`h-3 w-3 cursor-pointer rounded-full ${
+                            className={`h-3 w-3 cursor-pointer rounded-full transition hover:brightness-110 ${
                                 activeColumnIndex === index
                                     ? "bg-primary"
                                     : "bg-kanban-pagination-dot"

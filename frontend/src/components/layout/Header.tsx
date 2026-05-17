@@ -44,7 +44,7 @@ export function Header({
                     type="button"
                     onClick={onToggleTheme}
                     aria-label="Alternar tema"
-                    className={`relative h-6 w-12.5 cursor-pointer rounded-full transition ${
+                    className={`relative h-6 w-12.5 cursor-pointer rounded-full transition hover:brightness-110 ${
                         isLight
                             ? "bg-[linear-gradient(90deg,#FFC93F_0%,#FFC93F_0.01%,#FFE03F_100%)]"
                             : "bg-[linear-gradient(269.72deg,#222222_0.23%,#111111_0.24%,#2E2E2E_99.76%)]"

@@ -91,7 +91,7 @@ export function KanbanColumn({
                     <button
                         type="button"
                         onClick={onOpenCreateTaskModal}
-                        className="border-primary text-primary flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border-2"
+                        className="border-primary text-primary flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border-2 transition hover:brightness-110"
                     >
                         <span className="material-icons text-base!">add</span>
                     </button>
