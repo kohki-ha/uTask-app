@@ -14,7 +14,7 @@ export function Kanban({ theme, onToggleTheme }: KanbanProps) {
         <div className="bg-page text-text flex h-screen flex-col overflow-hidden">
             <Header variant="app" theme={theme} onToggleTheme={onToggleTheme} />
 
-            <main className="flex min-h-0 flex-1 flex-col px-8 pb-8">
+            <main className="flex min-h-0 flex-1 flex-col px-8 pb-10 lg:pb-8">
                 <DailyPhrase />
                 <KanbanBoard />
             </main>

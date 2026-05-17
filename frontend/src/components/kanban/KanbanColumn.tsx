@@ -6,6 +6,7 @@ type KanbanColumnProps = {
     status: CardStatus;
     cards: KanbanCardData[];
     showAddButton?: boolean;
+    className?: string;
     onOpenCreateTaskModal?: () => void;
     onMoveNext: (cardId: number) => void;
     onMovePrevious: (cardId: number) => void;
@@ -18,6 +19,7 @@ export function KanbanColumn({
     status,
     cards,
     showAddButton = false,
+    className = "",
     onOpenCreateTaskModal,
     onMoveNext,
     onMovePrevious,
@@ -33,7 +35,9 @@ export function KanbanColumn({
         );
 
     return (
-        <section className="flex min-h-0 w-full max-w-73 flex-1 flex-col">
+        <section
+            className={`flex min-h-0 w-full max-w-73 flex-1 flex-col ${className}`}
+        >
             <div className="mb-3 flex min-h-8 shrink-0 items-center justify-between">
                 <h2 className="text-text text-xl font-normal">{title}</h2>
 
@@ -62,8 +66,8 @@ export function KanbanColumn({
                     ))}
                 </div>
             ) : (
-                <div className="border-scroll flex min-h-32 flex-col items-center justify-center rounded-lg border-2 border-dashed p-5 text-center">
-                    <p className="text-scroll text-sm">
+                <div className="border-kanban-empty-state flex min-h-32 flex-col items-center justify-center rounded-lg border-2 border-dashed p-5 text-center">
+                    <p className="text-kanban-empty-state text-sm">
                         {status === "todo" && "Nenhuma tarefa a fazer"}
                         {status === "doing" && "Nenhuma tarefa em andamento"}
                         {status === "done" && "Nenhuma tarefa feita"}

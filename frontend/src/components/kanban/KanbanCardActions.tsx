@@ -31,7 +31,7 @@ export function KanbanCardActions({
                 <button
                     type="button"
                     onClick={onMoveNext}
-                    className="bg-primary text-card-bg flex h-5 w-5 cursor-pointer items-center justify-center rounded-full"
+                    className="bg-primary text-kanban-card-action-icon flex h-5 w-5 cursor-pointer items-center justify-center rounded-full"
                 >
                     <span className="material-icons text-base!">
                         chevron_right
@@ -43,7 +43,7 @@ export function KanbanCardActions({
                 <button
                     type="button"
                     onClick={onRestart}
-                    className="bg-primary text-card-bg flex h-5 w-5 cursor-pointer items-center justify-center rounded-full"
+                    className="bg-primary text-kanban-card-action-icon flex h-5 w-5 cursor-pointer items-center justify-center rounded-full"
                 >
                     <span className="material-icons text-base!">replay</span>
                 </button>

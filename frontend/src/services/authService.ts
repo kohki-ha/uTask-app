@@ -1,7 +1,4 @@
-import type {
-    LoginFormData,
-    RegisterFormData,
-} from "../schemas/authSchemas";
+import type { LoginFormData, RegisterFormData } from "../schemas/authSchemas";
 import { apiFetch } from "./api";
 
 type AuthResponse = {
