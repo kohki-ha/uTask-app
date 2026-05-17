@@ -34,7 +34,10 @@ export function AppRoutes({ theme, onToggleTheme }: AppRoutesProps) {
                     path="/kanban"
                     element={
                         <ProtectedRoute>
-                            <Kanban theme={theme} onToggleTheme={onToggleTheme} />
+                            <Kanban
+                                theme={theme}
+                                onToggleTheme={onToggleTheme}
+                            />
                         </ProtectedRoute>
                     }
                 />
