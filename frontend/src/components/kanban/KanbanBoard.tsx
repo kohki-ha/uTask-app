@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
-import type { KanbanCardData } from "../../types/kanban";
+import type { CardStatus, KanbanCardData } from "../../types/kanban";
 import { KanbanColumn } from "./KanbanColumn";
 import { CreateTaskModal } from "./CreateTaskModal";
 import {
@@ -16,11 +16,20 @@ const kanbanColumns = [
     { title: "Feito", status: "done", showAddButton: false },
 ] as const;
 
+const DESKTOP_QUERY = "(min-width: 1024px)";
+const SWIPE_THRESHOLD = 50;
+
 export function KanbanBoard() {
     const [cards, setCards] = useState<KanbanCardData[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false);
     const [activeColumnIndex, setActiveColumnIndex] = useState(0);
+    const [isDesktopBoard, setIsDesktopBoard] = useState(false);
+    const [draggedCardId, setDraggedCardId] = useState<number | null>(null);
+    const [dragOverStatus, setDragOverStatus] = useState<CardStatus | null>(
+        null,
+    );
+    const swipeStartRef = useRef<{ x: number; y: number } | null>(null);
 
     const activeColumn = kanbanColumns[activeColumnIndex];
 
@@ -42,6 +51,21 @@ export function KanbanBoard() {
         }
 
         loadTasks();
+    }, []);
+
+    useEffect(() => {
+        const mediaQuery = window.matchMedia(DESKTOP_QUERY);
+
+        function updateIsDesktopBoard() {
+            setIsDesktopBoard(mediaQuery.matches);
+        }
+
+        updateIsDesktopBoard();
+        mediaQuery.addEventListener("change", updateIsDesktopBoard);
+
+        return () => {
+            mediaQuery.removeEventListener("change", updateIsDesktopBoard);
+        };
     }, []);
 
     async function createTask(title: string, description: string) {
@@ -153,6 +177,89 @@ export function KanbanBoard() {
         );
     }
 
+    function handleCardDragStart(cardId: number) {
+        if (!isDesktopBoard) return;
+
+        setDraggedCardId(cardId);
+    }
+
+    function clearDragState() {
+        setDraggedCardId(null);
+        setDragOverStatus(null);
+    }
+
+    function handleColumnDragOver(status: CardStatus) {
+        if (!isDesktopBoard || draggedCardId === null) return;
+
+        const draggedCard = cards.find((card) => card.id === draggedCardId);
+
+        if (!draggedCard || draggedCard.status === status) {
+            setDragOverStatus(null);
+            return;
+        }
+
+        setDragOverStatus(status);
+    }
+
+    function handleColumnDragLeave(status: CardStatus) {
+        setDragOverStatus((currentStatus) =>
+            currentStatus === status ? null : currentStatus,
+        );
+    }
+
+    function handleCardDrop(targetStatus: CardStatus) {
+        if (!isDesktopBoard || draggedCardId === null) {
+            clearDragState();
+            return;
+        }
+
+        const draggedCard = cards.find((card) => card.id === draggedCardId);
+
+        if (!draggedCard || draggedCard.status === targetStatus) {
+            clearDragState();
+            return;
+        }
+
+        const cardId = draggedCardId;
+
+        clearDragState();
+        updateCardStatus(cardId, targetStatus);
+    }
+
+    function handleSwipeStart(event: React.PointerEvent<HTMLDivElement>) {
+        if (event.pointerType === "mouse" && event.button !== 0) return;
+
+        swipeStartRef.current = {
+            x: event.clientX,
+            y: event.clientY,
+        };
+    }
+
+    function handleSwipeEnd(event: React.PointerEvent<HTMLDivElement>) {
+        const swipeStart = swipeStartRef.current;
+
+        if (!swipeStart) return;
+
+        const deltaX = event.clientX - swipeStart.x;
+        const deltaY = event.clientY - swipeStart.y;
+        const isHorizontalSwipe = Math.abs(deltaX) > Math.abs(deltaY);
+
+        swipeStartRef.current = null;
+
+        if (!isHorizontalSwipe || Math.abs(deltaX) < SWIPE_THRESHOLD) return;
+
+        if (deltaX < 0) {
+            showNextColumn();
+            return;
+        }
+
+        showPreviousColumn();
+    }
+
+    function clearSwipeStart() {
+        swipeStartRef.current = null;
+    }
+
     function renderColumn(
         column: (typeof kanbanColumns)[number],
         className = "",
@@ -165,7 +272,15 @@ export function KanbanBoard() {
                 cards={cards}
                 showAddButton={column.showAddButton}
                 className={className}
+                isDragEnabled={isDesktopBoard}
+                draggedCardId={draggedCardId}
+                isDragOver={dragOverStatus === column.status}
                 onOpenCreateTaskModal={() => setIsCreateTaskModalOpen(true)}
+                onCardDragStart={handleCardDragStart}
+                onCardDragEnd={clearDragState}
+                onDragOverColumn={handleColumnDragOver}
+                onDragLeaveColumn={handleColumnDragLeave}
+                onDropCard={handleCardDrop}
                 onMoveNext={moveCardToNextColumn}
                 onMovePrevious={moveCardToPreviousColumn}
                 onRestart={restartCard}
@@ -185,7 +300,12 @@ export function KanbanBoard() {
     return (
         <>
             <section className="mx-auto mt-8 flex min-h-0 w-full max-w-240 flex-1 flex-col items-stretch lg:flex-row lg:justify-between lg:gap-10">
-                <div className="relative -mx-8 flex min-h-0 flex-1 items-stretch justify-center px-8 lg:hidden">
+                <div
+                    onPointerDown={handleSwipeStart}
+                    onPointerUp={handleSwipeEnd}
+                    onPointerCancel={clearSwipeStart}
+                    className="relative -mx-8 flex min-h-0 flex-1 touch-pan-y items-stretch justify-center px-8 lg:hidden"
+                >
                     <button
                         type="button"
                         onClick={showPreviousColumn}
