@@ -41,7 +41,7 @@ export function CreateTaskModal({
                     <button
                         type="button"
                         onClick={onClose}
-                        className="border-primary text-primary absolute right-0 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border-2"
+                        className="border-primary text-primary absolute right-0 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border-2 transition hover:brightness-110"
                         aria-label="Fechar modal"
                     >
                         <span className="material-icons text-sm!">close</span>

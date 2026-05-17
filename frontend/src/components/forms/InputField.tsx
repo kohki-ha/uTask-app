@@ -43,7 +43,7 @@ export function InputField({
                     <button
                         type="button"
                         onClick={() => setShowPassword((current) => !current)}
-                        className="text-input-border absolute top-1/2 right-4 flex -translate-y-1/2 cursor-pointer items-center"
+                        className="text-input-border absolute top-1/2 right-4 flex -translate-y-1/2 cursor-pointer items-center transition hover:brightness-110"
                         aria-label={
                             showPassword ? "Esconder senha" : "Mostrar senha"
                         }

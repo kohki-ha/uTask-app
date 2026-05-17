@@ -19,7 +19,7 @@ export function KanbanCardActions({
                 <button
                     type="button"
                     onClick={onMovePrevious}
-                    className="border-primary text-primary flex h-5 w-5 cursor-pointer items-center justify-center rounded-full border"
+                    className="border-primary text-primary flex h-5 w-5 cursor-pointer items-center justify-center rounded-full border transition hover:brightness-110"
                 >
                     <span className="material-icons text-base!">
                         chevron_left
@@ -31,7 +31,7 @@ export function KanbanCardActions({
                 <button
                     type="button"
                     onClick={onMoveNext}
-                    className="bg-primary text-kanban-card-action-icon flex h-5 w-5 cursor-pointer items-center justify-center rounded-full"
+                    className="bg-primary text-kanban-card-action-icon flex h-5 w-5 cursor-pointer items-center justify-center rounded-full transition hover:brightness-110"
                 >
                     <span className="material-icons text-base!">
                         chevron_right
@@ -43,7 +43,7 @@ export function KanbanCardActions({
                 <button
                     type="button"
                     onClick={onRestart}
-                    className="bg-primary text-kanban-card-action-icon flex h-5 w-5 cursor-pointer items-center justify-center rounded-full"
+                    className="bg-primary text-kanban-card-action-icon flex h-5 w-5 cursor-pointer items-center justify-center rounded-full transition hover:brightness-110"
                 >
                     <span className="material-icons text-base!">replay</span>
                 </button>

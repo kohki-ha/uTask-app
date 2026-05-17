@@ -92,7 +92,7 @@ export function DailyPhrase() {
                                 type="button"
                                 onClick={() => setIsModalOpen(false)}
                                 aria-label="Fechar frase do dia"
-                                className="border-primary text-primary flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-2"
+                                className="border-primary text-primary flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-2 transition hover:brightness-110"
                             >
                                 <span className="material-icons text-lg!">
                                     close
